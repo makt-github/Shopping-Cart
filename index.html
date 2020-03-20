@@ -25,9 +25,9 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="decrement1" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="addItem1" type="text" class="form-control text-center" value="1">
+                           <button id="increment1" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
                         <h5>$1219</h5>
                         <img src="images/remove.png" alt="" class="remove-item">
@@ -43,12 +43,12 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="decrement2" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="addItem2"  type="text" class="form-control text-center" value="1">
+                           <button id="increment2" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5>$59</h5>
+                        <h5>$ <span id="casePrice">59</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -77,6 +77,65 @@
          </div>
       </div>
    </section>
+
+   <script>
+
+      // Plus Button Activity For Mobile Case....
+
+      const plusBtn = document.getElementById("increment2");
+      plusBtn.addEventListener("click", function(){
+         
+         const items = itemPlus("addItem2");
+         price("casePrice",items);
+
+         })
+
+        // Minus Button for Mobile Case........
+
+        const minusBtn = document.getElementById("decrement2");
+        minusBtn.addEventListener("click",function(){
+           itemMinus("addItem2");
+        })
+
+      function itemPlus(id){
+
+         const addNewItem = document.getElementById(id).value;
+         const convertNumber = parseFloat(addNewItem);
+         const totalItem = convertNumber + 1 ;
+         document.getElementById(id).value = totalItem ;
+         return totalItem ;
+         
+         
+      }
+
+      function itemMinus(id){
+
+         const minusItem = document.getElementById(id).value;
+         const convertNumber = parseFloat(minusItem);
+         const totalItem = convertNumber - 1 ;
+         if(totalItem < 1){
+            alert("Please Select Valid Number!!");
+
+         }
+         else{
+            document.getElementById(id).value = totalItem ;
+         }
+
+      }
+
+      function price(id,num){
+         const addPrice = document.getElementById(id).innerText;
+         const convertNumber = parseFloat(addPrice);
+         const totalPrice = convertNumber + (num * convertNumber) - convertNumber ;
+         document.getElementById(id).innerText = totalPrice ;
+         
+
+
+      }
+       
+
+
+   </script>
 </body>
 
 </html>
